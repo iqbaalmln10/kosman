@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Ini adalah draf file `README.md` yang lengkap, profesional, dan terstruktur khusus untuk proyek **Kosman**. File ini dirancang agar siap kamu pasang di GitHub atau Notion sebagai panduan utama proyek.
 
-## Getting Started
+---
 
-First, run the development server:
+# 🏠 Kosman: Multi-Property Management System
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+**Kosman** adalah platform manajemen kos-kosan modern berbasis *full-stack* yang dirancang untuk membantu pemilik kos (Owner) mengelola banyak properti sekaligus secara efisien. Proyek ini mencakup ekosistem **Web Dashboard** untuk pengelolaan data berat dan **Mobile App** untuk pemantauan cepat serta notifikasi.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🚀 Fitur Utama (MVP)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 🏢 Multi-Property Management
 
-## Learn More
+- **Single Account, Multiple Assets:** Kelola banyak cabang kos-kosan (properti) dalam satu akun owner.
+- **Property Switching:** Berpindah antar dashboard properti dengan satu klik.
 
-To learn more about Next.js, take a look at the following resources:
+### 🛏️ Manajemen Kamar & Penghuni
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Status Kamar:** Monitoring status kamar (Tersedia, Terisi, Renovasi) secara real-time.
+- **Tenant Database:** Penyimpanan data penghuni lengkap dengan foto KTP dan tanggal jatuh tempo.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 💰 Sistem Keuangan & Penagihan
 
-## Deploy on Vercel
+- **Automated Invoicing:** Pembuatan tagihan otomatis setiap bulan berdasarkan tanggal masuk penghuni.
+- **Transaction Logs:** Catatan riwayat pembayaran (Lunas, Menunggak, atau DP).
+- **WhatsApp Integration:** Kirim pengingat tagihan langsung ke WhatsApp penghuni melalui aplikasi.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 📊 Dashboard Analytics
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Visualisasi pendapatan bulanan per properti.
+- Statistik okupansi (persentase kamar yang terisi).
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend & Backend (Web)
+
+- **Framework:** [Next.js 15+](https://nextjs.org/) (App Router)
+- **Language:** [TypeScript](https://www.typescriptlang.org/)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+- **Authentication:** [Clerk](https://clerk.com/) (Secure & Scalable Auth)
+
+### Database & Dev Tools
+
+- **Database:** [PostgreSQL](https://www.postgresql.org/) (Hosted on Supabase/Neon)
+- **ORM:** [Prisma](https://www.prisma.io/)
+- **Design Tool:** [Figma](https://www.figma.com/)
+- **API Testing:** Postman
+
+### Mobile (Future Development)
+
+- **Framework:** [React Native](https://reactnative.dev/) (Expo)
+
+---
+
+## 📂 Struktur Database (High Level)
+
+Aplikasi ini menggunakan relasi database sebagai berikut:
+
+1. **User (Owner):** Pemegang akun utama.
+2. **Property:** Milik User (Relasi: *One-to-Many*).
+3. **Kamar:** Milik Property (Relasi: *One-to-Many*).
+4. **Penghuni:** Menghuni Kamar (Relasi: *One-to-One*).
+5. **Transaksi:** Milik Penghuni (Relasi: *One-to-Many*).
+
