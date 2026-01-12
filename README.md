@@ -1,62 +1,66 @@
-Ini adalah draf file README.md yang lengkap, profesional, dan terstruktur khusus untuk proyek Kosman. File ini dirancang agar siap kamu pasang di GitHub atau Notion sebagai panduan utama proyek.
+Ini adalah draf file `README.md` yang lengkap, profesional, dan terstruktur khusus untuk proyek **Kosman**. File ini dirancang agar siap kamu pasang di GitHub atau Notion sebagai panduan utama proyek.
 
-🏠 Kosman: Multi-Property Management System
-Kosman adalah platform manajemen kos-kosan modern berbasis full-stack yang dirancang untuk membantu pemilik kos (Owner) mengelola banyak properti sekaligus secara efisien. Proyek ini mencakup ekosistem Web Dashboard untuk pengelolaan data berat dan Mobile App untuk pemantauan cepat serta notifikasi.
+---
 
-🚀 Fitur Utama (MVP)
-🏢 Multi-Property Management
-Single Account, Multiple Assets: Kelola banyak cabang kos-kosan (properti) dalam satu akun owner.
+# 🏠 Kosman: Multi-Property Management System
 
-Property Switching: Berpindah antar dashboard properti dengan satu klik.
+**Kosman** adalah platform manajemen kos-kosan modern berbasis *full-stack* yang dirancang untuk membantu pemilik kos (Owner) mengelola banyak properti sekaligus secara efisien. Proyek ini mencakup ekosistem **Web Dashboard** untuk pengelolaan data berat dan **Mobile App** untuk pemantauan cepat serta notifikasi.
 
-🛏️ Manajemen Kamar & Penghuni
-Status Kamar: Monitoring status kamar (Tersedia, Terisi, Renovasi) secara real-time.
+---
 
-Tenant Database: Penyimpanan data penghuni lengkap dengan foto KTP dan tanggal jatuh tempo.
+## 🚀 Fitur Utama (MVP)
 
-💰 Sistem Keuangan & Penagihan
-Automated Invoicing: Pembuatan tagihan otomatis setiap bulan berdasarkan tanggal masuk penghuni.
+### 🏢 Multi-Property Management
 
-Transaction Logs: Catatan riwayat pembayaran (Lunas, Menunggak, atau DP).
+- **Single Account, Multiple Assets:** Kelola banyak cabang kos-kosan (properti) dalam satu akun owner.
+- **Property Switching:** Berpindah antar dashboard properti dengan satu klik.
 
-WhatsApp Integration: Kirim pengingat tagihan langsung ke WhatsApp penghuni melalui aplikasi.
+### 🛏️ Manajemen Kamar & Penghuni
 
-📊 Dashboard Analytics
-Visualisasi pendapatan bulanan per properti.
+- **Status Kamar:** Monitoring status kamar (Tersedia, Terisi, Renovasi) secara real-time.
+- **Tenant Database:** Penyimpanan data penghuni lengkap dengan foto KTP dan tanggal jatuh tempo.
 
-Statistik okupansi (persentase kamar yang terisi).
+### 💰 Sistem Keuangan & Penagihan
 
-🛠️ Tech Stack
-Frontend & Backend (Web)
-Framework: Next.js 15+ (App Router)
+- **Automated Invoicing:** Pembuatan tagihan otomatis setiap bulan berdasarkan tanggal masuk penghuni.
+- **Transaction Logs:** Catatan riwayat pembayaran (Lunas, Menunggak, atau DP).
+- **WhatsApp Integration:** Kirim pengingat tagihan langsung ke WhatsApp penghuni melalui aplikasi.
 
-Language: TypeScript
+### 📊 Dashboard Analytics
 
-Styling: Tailwind CSS
+- Visualisasi pendapatan bulanan per properti.
+- Statistik okupansi (persentase kamar yang terisi).
 
-Authentication: Clerk (Secure & Scalable Auth)
+---
 
-Database & Dev Tools
-Database: PostgreSQL (Hosted on Supabase/Neon)
+## 🛠️ Tech Stack
 
-ORM: Prisma
+### Frontend & Backend (Web)
 
-Design Tool: Figma
+- **Framework:** [Next.js 15+](https://nextjs.org/) (App Router)
+- **Language:** [TypeScript](https://www.typescriptlang.org/)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+- **Authentication:** [Clerk](https://clerk.com/) (Secure & Scalable Auth)
 
-API Testing: Postman
+### Database & Dev Tools
 
-Mobile (Future Development)
-Framework: React Native (Expo)
+- **Database:** [PostgreSQL](https://www.postgresql.org/) (Hosted on Supabase/Neon)
+- **ORM:** [Prisma](https://www.prisma.io/)
+- **Design Tool:** [Figma](https://www.figma.com/)
+- **API Testing:** Postman
 
-📂 Struktur Database (High Level)
+### Mobile (Future Development)
+
+- **Framework:** [React Native](https://reactnative.dev/) (Expo)
+
+---
+
+## 📂 Struktur Database (High Level)
+
 Aplikasi ini menggunakan relasi database sebagai berikut:
 
-User (Owner): Pemegang akun utama.
-
-Property: Milik User (Relasi: One-to-Many).
-
-Kamar: Milik Property (Relasi: One-to-Many).
-
-Penghuni: Menghuni Kamar (Relasi: One-to-One).
-
-Transaksi: Milik Penghuni (Relasi: One-to-Many).
+1. **User (Owner):** Pemegang akun utama.
+2. **Property:** Milik User (Relasi: *One-to-Many*).
+3. **Kamar:** Milik Property (Relasi: *One-to-Many*).
+4. **Penghuni:** Menghuni Kamar (Relasi: *One-to-One*).
+5. **Transaksi:** Milik Penghuni (Relasi: *One-to-Many*).
