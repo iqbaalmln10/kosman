@@ -1,6 +1,7 @@
 // src/app/forgot-password/page.tsx
 import Link from 'next/link';
-import { Building2, ArrowLeft, Mail } from 'lucide-react';
+import { Building2, ArrowLeft, Mail } 
+from 'lucide-react';
 
 export default function ForgotPasswordPage() {
   return (

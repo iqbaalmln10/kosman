@@ -1,6 +1,7 @@
 // src/app/register/page.tsx
 import Link from 'next/link';
-import { Building2, ArrowLeft, Check } from 'lucide-react';
+import { Building2, ArrowLeft, Check } 
+from 'lucide-react';
 
 export default function RegisterPage() {
   return (

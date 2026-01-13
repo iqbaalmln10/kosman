@@ -1,6 +1,7 @@
 // src/app/page.tsx
 import Link from 'next/link';
-import { ArrowRight, Building2, Users, TrendingUp, Shield } from 'lucide-react';
+import { ArrowRight, Building2, Users, TrendingUp, Shield } 
+from 'lucide-react';
 
 export default function LandingPage() {
   return (
