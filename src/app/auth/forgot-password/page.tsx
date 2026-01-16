@@ -9,7 +9,7 @@ export default function ForgotPasswordPage() {
       <div className="w-full max-w-md">
         {/* Back to login */}
         <Link 
-          href="/login"
+          href="/auth/login"
           className="inline-flex items-center gap-2 text-slate-600 hover:text-slate-900 mb-8 transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
@@ -71,7 +71,7 @@ export default function ForgotPasswordPage() {
             <p className="text-slate-600">
               Ingat password Anda?{' '}
               <Link 
-                href="/login"
+                href="/auth/login"
                 className="text-slate-900 font-medium hover:underline"
               >
                 Masuk

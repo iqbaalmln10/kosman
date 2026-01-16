@@ -16,13 +16,13 @@ export default function LandingPage() {
             </div>
             <div className="flex items-center gap-4">
               <Link 
-                href="/login"
+                href="/auth/login"
                 className="text-slate-600 hover:text-slate-900 transition-colors"
               >
                 Masuk
               </Link>
               <Link 
-                href="/register"
+                href="/auth/register"
                 className="px-5 py-2 bg-slate-900 text-white rounded-lg hover:bg-slate-800 transition-colors"
               >
                 Mulai Gratis
@@ -52,7 +52,7 @@ export default function LandingPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link 
-                  href="/register"
+                  href="/auth/register"
                   className="group px-8 py-4 bg-slate-900 text-white rounded-xl hover:bg-slate-800 transition-all flex items-center justify-center gap-2"
                 >
                   Mulai Sekarang
@@ -139,7 +139,7 @@ export default function LandingPage() {
                 Bergabung dengan owner kos modern yang sudah menggunakan Kosman
               </p>
               <Link 
-                href="/register"
+                href="/auth/register"
                 className="inline-flex items-center gap-2 px-8 py-4 bg-white text-slate-900 rounded-xl hover:bg-slate-100 transition-colors"
               >
                 Daftar Gratis

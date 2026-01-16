@@ -1,48 +1,101 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
 datasource db {
   provider = "postgresql"
 }
 
-generator client {
-  provider = "prisma-client-id"
+model properties {
+  id          String   @id
+  name        String
+  address     String
+  city        String
+  description String?
+  userId      String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime
+  users       users    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  rooms       rooms[]
+
+  @@index([userId])
 }
 
-// Model untuk Owner (User)
-model User {
-  id         String     @id @default(uuid())
-  email      String     @unique
-  name       String?
-  properties Property[] // Satu owner bisa punya banyak properti/kos
-  createdAt  DateTime   @default(now())
+model rooms {
+  id          String     @id
+  roomNumber  String
+  price       Int
+  status      RoomStatus @default(AVAILABLE)
+  description String?
+  propertyId  String
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime
+  properties  properties @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  tenants     tenants?
+
+  @@index([propertyId])
+  @@index([status])
 }
 
-// Model untuk Properti (Nama Kos)
-model Property {
-  id        String   @id @default(uuid())
-  name      String   // Contoh: "Kos Melati"
-  address   String
-  ownerId   String
-  owner     User     @relation(fields: [ownerId], references: [id])
-  rooms     Room[]   // Satu kos punya banyak kamar
-  createdAt DateTime @default(now())
+model tenants {
+  id           String         @id
+  fullName     String
+  email        String?
+  phone        String
+  idCardUrl    String?
+  moveInDate   DateTime
+  dueDate      Int
+  roomId       String         @unique
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime
+  rooms        rooms          @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  transactions transactions[]
+
+  @@index([phone])
+  @@index([roomId])
 }
 
-// Model untuk Kamar
-model Room {
-  id         String   @id @default(uuid())
-  number     String   // Contoh: "A1" atau "101"
-  price      Float
-  status     String   @default("AVAILABLE") // AVAILABLE, OCCUPIED, REPAIR
-  propertyId String
-  property   Property @relation(fields: [propertyId], references: [id])
-  tenants    Tenant[]
+model transactions {
+  id            String            @id
+  amount        Int
+  month         String
+  status        TransactionStatus @default(PENDING)
+  paidAt        DateTime?
+  paymentMethod String?
+  tenantId      String
+  createdAt     DateTime          @default(now())
+  updatedAt     DateTime
+  tenants       tenants           @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@index([month])
+  @@index([status])
+  @@index([tenantId])
 }
 
-// Model untuk Penghuni
-model Tenant {
-  id        String   @id @default(uuid())
-  name      String
-  phone     String
-  roomId    String
-  room      Room     @relation(fields: [roomId], references: [id])
-  startDate DateTime @default(now())
+model users {
+  id         String       @id @default(cuid()) // Tambahkan default
+  clerkId    String       @unique
+  email      String       @unique
+  firstName  String?
+  lastName   String?
+  imageUrl   String?
+  phone      String?
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt // Tambahkan @updatedAt otomatis
+  properties properties[]
+
+  @@index([clerkId])
+  @@index([email])
+}
+
+enum RoomStatus {
+  AVAILABLE
+  OCCUPIED
+  MAINTENANCE
+}
+
+enum TransactionStatus {
+  PENDING
+  PAID
+  OVERDUE
 }
