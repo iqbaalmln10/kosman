@@ -28,7 +28,7 @@ export function NavbarProfile() {
 
   const handleSignOut = async () => {
     await signOut();
-    router.push("/auth/login");
+    router.push("/");
   };
 
   const handleManageAccount = () => {
