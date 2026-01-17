@@ -7,14 +7,14 @@ datasource db {
 }
 
 model properties {
-  id          String   @id
+  id          String   @id @default(cuid())
   name        String
   address     String
-  city        String
+  city        String?
   description String?
   userId      String
   createdAt   DateTime @default(now())
-  updatedAt   DateTime
+  updatedAt   DateTime @default(now()) @updatedAt
   users       users    @relation(fields: [userId], references: [id], onDelete: Cascade)
   rooms       rooms[]
 

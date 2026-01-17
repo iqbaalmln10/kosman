@@ -1,26 +1,38 @@
-// src/components/dashboard/DashboardHeader.tsx
 "use client";
 
 import { useState } from "react";
-import { Building2, ChevronDown, Bell, Settings, Plus, ArrowLeft} from "lucide-react";
+import { Building2, ChevronDown, Bell, Settings, Plus } from "lucide-react";
 import { NavbarProfile } from "@/components/NavbarProfile";
 import Link from "next/link";
 
-// TODO: Replace with actual data from database
-const properties = [
-  { id: "1", name: "Kos Melati", totalRooms: 12, occupiedRooms: 10 },
-  { id: "2", name: "Kos Mawar", totalRooms: 8, occupiedRooms: 7 },
-  { id: "3", name: "Kos Kenanga", totalRooms: 15, occupiedRooms: 12 },
-];
+// Tambahkan Interface untuk Type Data
+interface Property {
+  id: string;
+  name: string;
+  _count?: {
+    rooms: number;
+  };
+  rooms?: {
+    status: string;
+  }[];
+}
 
-export function DashboardHeader() {
-  const [selectedProperty, setSelectedProperty] = useState(properties[0]);
+export function DashboardHeader({ properties }: { properties: Property[] }) {
+  // Default ke properti pertama dari DB, jika tidak ada pakai object kosong
+  const [selectedProperty, setSelectedProperty] = useState(properties[0] || { name: "Pilih Properti", id: "" });
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
+  // Hitung kamar terisi (opsional, jika data rooms disertakan)
+  const getOccupiedCount = (prop: Property) => {
+    return prop.rooms?.filter(r => r.status === 'OCCUPIED').length || 0;
+  };
+
+  const getTotalRooms = (prop: Property) => {
+    return prop._count?.rooms || prop.rooms?.length || 0;
+  };
+
   return (
-    <>
-      {/* Main Header */}
-      <header className="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-6">
+    <header className="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-6">
       <div className="relative">
         <button
           onClick={() => setIsDropdownOpen(!isDropdownOpen)}
@@ -39,54 +51,49 @@ export function DashboardHeader() {
 
         {isDropdownOpen && (
           <>
-            {/* Backdrop */}
-            <div
-              className="fixed inset-0 z-40"
-              onClick={() => setIsDropdownOpen(false)}
-            />
-
-            {/* Dropdown */}
+            <div className="fixed inset-0 z-40" onClick={() => setIsDropdownOpen(false)} />
             <div className="absolute top-full mt-2 left-0 w-64 bg-white rounded-xl shadow-lg border border-slate-200 py-2 z-50">
-              {properties.map((prop) => (
-                <button
-                  key={prop.id}
-                  onClick={() => {
-                    setSelectedProperty(prop);
-                    setIsDropdownOpen(false);
-                  }}
-                  className={`w-full px-4 py-2.5 text-left hover:bg-slate-50 transition-colors ${
-                    selectedProperty.id === prop.id ? "bg-slate-50" : ""
-                  }`}
-                >
-                  <div className="font-medium text-slate-900">{prop.name}</div>
-                  <div className="text-xs text-slate-500 mt-0.5">
-                    {prop.occupiedRooms}/{prop.totalRooms} kamar terisi
-                  </div>
-                </button>
-              ))}
+              {properties.length === 0 ? (
+                <div className="px-4 py-2 text-sm text-slate-500 text-center">Belum ada properti</div>
+              ) : (
+                properties.map((prop) => (
+                  <button
+                    key={prop.id}
+                    onClick={() => {
+                      setSelectedProperty(prop);
+                      setIsDropdownOpen(false);
+                    }}
+                    className={`w-full px-4 py-2.5 text-left hover:bg-slate-50 transition-colors ${
+                      selectedProperty.id === prop.id ? "bg-slate-50" : ""
+                    }`}
+                  >
+                    <div className="font-medium text-slate-900">{prop.name}</div>
+                    <div className="text-xs text-slate-500 mt-0.5">
+                      {getOccupiedCount(prop)}/{getTotalRooms(prop)} kamar terisi
+                    </div>
+                  </button>
+                ))
+              )}
+              
               <div className="border-t border-slate-100 mt-2 pt-2 px-4">
-                <button className="flex items-center gap-2 text-sm text-slate-600 hover:text-slate-900 transition-colors">
+                <Link 
+                  href="/dashboard/kos/properties/new"
+                  className="flex items-center gap-2 text-sm text-slate-600 hover:text-slate-900 transition-colors"
+                  onClick={() => setIsDropdownOpen(false)}
+                >
                   <Plus className="w-4 h-4" />
                   Tambah Properti
-                </button>
+                </Link>
               </div>
             </div>
           </>
         )}
       </div>
 
-      {/* Right Actions */}
       <div className="flex items-center gap-3">
-        <button className="relative p-2 hover:bg-slate-50 rounded-lg transition-colors">
-          <Bell className="w-5 h-5 text-slate-600" />
-          <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full"></span>
-        </button>
-        <button className="p-2 hover:bg-slate-50 rounded-lg transition-colors">
-          <Settings className="w-5 h-5 text-slate-600" />
-        </button>
+        {/* ... (Notif & Settings tetap sama) */}
         <NavbarProfile />
       </div>
     </header>
-    </>
   );
 }

@@ -58,9 +58,6 @@ export default function LandingPage() {
                   Mulai Sekarang
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
-                <button className="px-8 py-4 border-2 border-slate-200 rounded-xl hover:border-slate-300 transition-colors text-slate-700">
-                  Lihat Demo
-                </button>
               </div>
             </div>
             
