@@ -60,12 +60,27 @@ export function Sidebar() {
       {/* Logo */}
       <div className="h-16 flex items-center justify-between px-6 border-b border-slate-200">
         {!isCollapsed && (
-          <div className="flex items-center gap-2">
+          <Link 
+            href="/dashboard"
+            className="flex items-center gap-2 hover:opacity-75 transition-opacity group"
+            title="Kembali ke Dashboard"
+          >
             <div className="w-8 h-8 bg-slate-900 rounded-lg flex items-center justify-center">
               <Building2 className="w-5 h-5 text-white" />
             </div>
             <span className="text-lg font-semibold text-slate-900">Kosman</span>
-          </div>
+          </Link>
+        )}
+        {isCollapsed && (
+          <Link 
+            href="/dashboard"
+            className="flex items-center justify-center hover:opacity-75 transition-opacity"
+            title="Kembali ke Dashboard"
+          >
+            <div className="w-8 h-8 bg-slate-900 rounded-lg flex items-center justify-center">
+              <Building2 className="w-5 h-5 text-white" />
+            </div>
+          </Link>
         )}
         <button
           onClick={() => setIsCollapsed(!isCollapsed)}

@@ -148,19 +148,6 @@ export default function AppSelector() {
             );
           })}
         </div>
-
-        {/* Info Section */}
-        <div className="mt-16 max-w-2xl mx-auto">
-          <div className="bg-white rounded-2xl p-8 border border-slate-200">
-            <h3 className="text-lg font-semibold text-slate-900 mb-3">
-              💡 Tip: Multi-Platform dalam Satu Akun
-            </h3>
-            <p className="text-slate-600 leading-relaxed">
-              Dengan akun Kosman, Anda dapat mengakses berbagai platform bisnis. 
-              Data Anda tersimpan terpisah untuk setiap aplikasi, namun tetap dalam satu dashboard terpadu.
-            </p>
-          </div>
-        </div>
       </main>
     </div>
   );
