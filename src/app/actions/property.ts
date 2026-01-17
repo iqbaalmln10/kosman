@@ -11,6 +11,8 @@ export async function createProperty(formData: FormData) {
 
   const name = formData.get("name") as string;
   const address = formData.get("address") as string;
+  const city = formData.get("city") as string; // Tambahkan ini
+  const description = formData.get("description") as string; // Tambahkan ini
 
   // Cari ID user internal berdasarkan Clerk ID
   const user = await prisma.users.findUnique({
@@ -19,12 +21,14 @@ export async function createProperty(formData: FormData) {
 
   if (!user) throw new Error("User not found");
 
+  // 2. MASUKKAN DATA KE PRISMA
   await prisma.properties.create({
     data: {
       id: crypto.randomUUID(),
       name,
       address,
-      city: "",
+      city, // Sekarang data city tersimpan
+      description, // Sekarang data description tersimpan
       userId: user.id,
       updatedAt: new Date(),
     },
@@ -32,5 +36,6 @@ export async function createProperty(formData: FormData) {
 
   // Refresh data dashboard agar properti baru muncul
   revalidatePath("/dashboard/kos");
+  // Catatan: redirect biasanya ditaruh di paling akhir
   redirect("/dashboard/kos");
 }

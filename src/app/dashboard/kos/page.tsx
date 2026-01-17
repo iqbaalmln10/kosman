@@ -10,6 +10,7 @@ import {
   Plus,
   AlertCircle
 } from 'lucide-react';
+import CreatePropertyModal from "@/components/dashboard/CreatePropertyModal";
 
 async function getDashboardData(userId: string) {
   // Get user's properties with room and tenant data
@@ -335,13 +336,7 @@ function EmptyDashboard() {
         <p className="text-slate-600 mb-8">
           Mulai dengan menambahkan properti kos pertama Anda untuk mulai mengelola bisnis kos-kosan.
         </p>
-        <a
-          href="/dashboard/kos/properties/new"
-          className="inline-flex items-center gap-2 px-6 py-3 bg-slate-900 text-white rounded-xl hover:bg-slate-800 transition-colors"
-        >
-          <Plus className="w-5 h-5" />
-          Tambah Properti
-        </a>
+        <CreatePropertyModal />
       </div>
     </div>
   );

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Building2, ChevronDown, Bell, Settings, Plus } from "lucide-react";
 import { NavbarProfile } from "@/components/NavbarProfile";
 import Link from "next/link";
+import CreatePropertyModal from "@/components/dashboard/CreatePropertyModal";
 
 // Tambahkan Interface untuk Type Data
 interface Property {
@@ -76,14 +77,8 @@ export function DashboardHeader({ properties }: { properties: Property[] }) {
               )}
               
               <div className="border-t border-slate-100 mt-2 pt-2 px-4">
-                <Link 
-                  href="/dashboard/kos/properties/new"
-                  className="flex items-center gap-2 text-sm text-slate-600 hover:text-slate-900 transition-colors"
-                  onClick={() => setIsDropdownOpen(false)}
-                >
-                  <Plus className="w-4 h-4" />
-                  Tambah Properti
-                </Link>
+                <p className="text-xs text-slate-500 mb-2">Ingin menambah properti baru?</p>
+                <CreatePropertyModal />
               </div>
             </div>
           </>
