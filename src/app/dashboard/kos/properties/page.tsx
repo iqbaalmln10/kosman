@@ -97,7 +97,7 @@ export default async function PropertiesPage() {
                       </p>
                     </div>
                   </div>
-                    <PropertyAction propertyId={prop.id} propertyName={prop.name} />
+                    <PropertyAction property={prop} />
                 </div>
 
                 {/* Stats Row */}
