@@ -13,6 +13,7 @@ export async function createProperty(formData: FormData) {
   const address = formData.get("address") as string;
   const city = formData.get("city") as string; // Tambahkan ini
   const description = formData.get("description") as string; // Tambahkan ini
+  const imageUrl = formData.getAll("images") as File[]; // Jika ada upload gambar di masa depan
 
   // Cari ID user internal berdasarkan Clerk ID
   const user = await prisma.users.findUnique({
