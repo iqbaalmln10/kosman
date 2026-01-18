@@ -39,3 +39,39 @@ export async function createProperty(formData: FormData) {
   // Catatan: redirect biasanya ditaruh di paling akhir
   redirect("/dashboard/kos");
 }
+
+export async function deleteProperty(id: string) {
+  const { userId: clerkId } = await auth();
+  if (!clerkId) throw new Error("Unauthorized");
+
+  // Opsional: Cek apakah properti ini milik user yang sedang login
+  // Prisma akan otomatis menghapus Rooms karena onDelete: Cascade di skema Anda
+  await prisma.properties.delete({
+    where: { id },
+  });
+
+  revalidatePath("/dashboard/kos/properties");
+}
+
+export async function updateProperty(id: string, formData: FormData) {
+  const { userId: clerkId } = await auth();
+  if (!clerkId) throw new Error("Unauthorized");
+
+  const name = formData.get("name") as string;
+  const address = formData.get("address") as string;
+  const city = formData.get("city") as string;
+  const description = formData.get("description") as string;
+
+  await prisma.properties.update({
+    where: { id },
+    data: {
+      name,
+      address,
+      city,
+      description,
+      updatedAt: new Date(),
+    },
+  });
+
+  revalidatePath("/dashboard/kos/properties");
+}
