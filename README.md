@@ -1,5 +1,3 @@
-Ini adalah draf file `README.md` yang lengkap, profesional, dan terstruktur khusus untuk proyek **Kosman**. File ini dirancang agar siap kamu pasang di GitHub atau Notion sebagai panduan utama proyek.
-
 ---
 
 # 🏠 Kosman: Multi-Property Management System
@@ -54,14 +52,4 @@ Ini adalah draf file `README.md` yang lengkap, profesional, dan terstruktur khus
 - **Framework:** [React Native](https://reactnative.dev/) (Expo)
 
 ---
-
-## 📂 Struktur Database (High Level)
-
-Aplikasi ini menggunakan relasi database sebagai berikut:
-
-1. **User (Owner):** Pemegang akun utama.
-2. **Property:** Milik User (Relasi: *One-to-Many*).
-3. **Kamar:** Milik Property (Relasi: *One-to-Many*).
-4. **Penghuni:** Menghuni Kamar (Relasi: *One-to-One*).
-5. **Transaksi:** Milik Penghuni (Relasi: *One-to-Many*).
 
