@@ -1,6 +1,6 @@
 "use client"; // WAJIB untuk menggunakan hook auth
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSignIn, useAuth } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -15,9 +15,14 @@ export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
-  // Redirect jika sudah login
-  if (isLoaded && isSignedIn) {
-    router.push("/dashboard");
+  // Redirect jika sudah login menggunakan useEffect untuk menghindari error rendering
+  useEffect(() => {
+    if (isLoaded && isSignedIn) {
+      router.push("/dashboard");
+    }
+  }, [isLoaded, isSignedIn, router]);
+
+  if (!isLoaded || isSignedIn) {
     return null;
   }
 

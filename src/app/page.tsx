@@ -1,9 +1,27 @@
 // src/app/page.tsx
+"use client";
+
 import Link from 'next/link';
-import { ArrowRight, Building2, Users, TrendingUp, Shield } 
-from 'lucide-react';
+import { ArrowRight, Building2, Users, TrendingUp, Shield } from 'lucide-react';
+import { useAuth } from '@clerk/nextjs';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
 export default function LandingPage() {
+  const { isSignedIn, isLoaded } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (isLoaded && isSignedIn) {
+      router.push('/dashboard');
+    }
+  }, [isLoaded, isSignedIn, router]);
+
+  // Optional: Show nothing or a loader while checking session to prevent flicker
+  if (isLoaded && isSignedIn) {
+    return null;
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
       {/* Navigation */}
