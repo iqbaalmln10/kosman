@@ -1,18 +1,25 @@
 "use client"; // WAJIB untuk menggunakan hook auth
 
 import { useState } from "react";
-import { useSignIn } from "@clerk/nextjs";
+import { useSignIn, useAuth } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Building2, ArrowLeft, Loader2 } from "lucide-react";
 
 export default function LoginPage() {
   const { isLoaded, signIn, setActive } = useSignIn();
+  const { isSignedIn } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+
+  // Redirect jika sudah login
+  if (isLoaded && isSignedIn) {
+    router.push("/dashboard");
+    return null;
+  }
 
   // Logic Login Clerk
   const handleSubmit = async (e: React.FormEvent) => {
